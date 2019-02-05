@@ -6,3 +6,4 @@ with open('db_sample.csv', "r+", newline='', encoding='utf8') as dbRaw:
         if int(i[-1])%5!=0:
             i[-1]="delete_this"
     writer=csv.writer(dbRaw)
+    writer.writerows(db)
