@@ -1,5 +1,5 @@
 import csv
-with open('db_sample.csv', "r+", newline='', encoding='utf8') as dbRaw:
+with open('db_sample.csv', "w+", newline='', encoding='utf8') as dbRaw:
     initial=1
     db = list(csv.reader(dbRaw, delimiter=","))
     for i in db[1:]:
