@@ -3,7 +3,7 @@ import pandas as pd
 dbRead = open('db.csv', "r", newline='', encoding='utf8')
 db = list(csv.reader(dbRead, delimiter=","))
 for i in db[1:]:
-    if int(i[-1])%5!=0:
-        i[-1]="delete_this"
+    if int(i[-2])%5!=0:
+        i[-2]="delete_this"
 df=pd.DataFrame(data=db)
 df.to_csv('db.csv', sep=",", encoding='utf8')
