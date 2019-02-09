@@ -16,9 +16,9 @@ class Question:
 
 def main():
     with open('sample.csv', encoding='utf8') as dbraw:
-        db = [i for i in list(reader(dbraw))]
-    x=Question(db[0])
-    print(x.returnUID())
+        db = [Question(i) for i in list(reader(dbraw))]
+
+
 
 if __name__ == "__main__":
     main()
