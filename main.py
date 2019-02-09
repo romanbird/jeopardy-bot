@@ -1,4 +1,4 @@
-import csv
+from csv import reader
 class Question:
     def __init__(self, line):
         self.id = line[0]
@@ -17,7 +17,7 @@ class Question:
 def main():
     db = []
     with open('sample.csv', encoding='utf8') as dbraw:
-        for i in list(csv.reader(dbraw)):
+        for i in list(reader(dbraw)):
             db.append(i)
     x=Question(db[0])
     print(x.returnUID())
