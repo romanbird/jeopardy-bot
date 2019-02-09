@@ -15,10 +15,8 @@ class Question:
         return self.id+self.topic
 
 def main():
-    db = []
     with open('sample.csv', encoding='utf8') as dbraw:
-        for i in list(reader(dbraw)):
-            db.append(i)
+        db = [i for i in list(reader(dbraw))]
     x=Question(db[0])
     print(x.returnUID())
 
