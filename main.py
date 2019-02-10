@@ -13,7 +13,7 @@ class Question:
         self.answer=line[5]
     
     def returnUID(self):
-        return self.id+self.topic
+        return (self.id,self.topic)
 
 def main():
     with open('sample.csv', encoding='utf8') as dbraw:
