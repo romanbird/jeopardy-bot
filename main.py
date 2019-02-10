@@ -1,5 +1,6 @@
 from csv import reader
 from random import choice
+
 class Question:
     def __init__(self, line):
         self.id = line[0]
