@@ -25,7 +25,7 @@ class Question:
 
 
 def main():
-    with open('sample.csv', encoding='utf8') as dbraw:
+    with open('db.csv', encoding='utf8') as dbraw:
         db = [Question(i) for i in list(reader(dbraw))]
     roundGenerator(db, 1)
 
