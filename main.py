@@ -13,9 +13,12 @@ class Question:
     def __repr__(self):
         return "\nTopic: {}, {}, {}, {}".format(self.topic,self.round,self.value,self.question)
 
-    def returnUID(self, roundN):
-        return (self.id,self.round,self.topic) if self.round == roundN else None
+    def fetchRoundUID(self, roundN):
+        return self.fetchRoundUID() if self.round == roundN else None
     
+    def fetchUID(self):
+        return (self.id,self.round,self.topic)
+
     def isSelected(self, uIDs):
         if (self.id,self.round,self.topic) in uIDs:
             return self
@@ -27,7 +30,7 @@ def main():
     roundGenerator(db, 1)
 
 def roundGenerator(db, roundN):
-    categories = sample(set([i.returnUID(roundN) for i in db if i.round == roundN]),5)
+    categories = sample(set([i.fetchRoundUID(roundN) for i in db if i.round == roundN]),5)
     print([i.isSelected(categories) for i in db if i.isSelected(categories) != None])
 
 if __name__ == "__main__":
