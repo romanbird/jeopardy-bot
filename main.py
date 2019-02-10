@@ -4,10 +4,7 @@ from random import sample
 class Question:
     def __init__(self, line):
         self.id = line[0]
-        if line[1]=="Jeopardy!":
-            self.round=1
-        else:
-            self.round=2
+        self.round = 1 if line[1]=="Jeopardy" else 2
         self.topic=line[2]
         self.value=int(line[3]) if int(self.id) > 3966 else int(line[3]) * 2
         self.question=line[4]
