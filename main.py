@@ -38,10 +38,13 @@ def main():
     with open('db.csv', encoding='utf8') as dbraw:
         db = [Question(i) for i in list(reader(dbraw))]
 
-    players = fetchPlayers()
+    #players = fetchPlayers()
+    players = [Player("Roman"), Player("George")]
 
     roundN = 1
     docket = docketGenerator(db, roundN)
+
+    game(docket, players)
 
 
 
@@ -62,6 +65,12 @@ def fetchPlayers():
             break
         players.append(Player(x))
     return players
+
+def game(docket, players):
+    topics = [i for i in set([i.topic for i in docket])]
+    print("TONIGHT'S TOPICS ARE...")
+    for i in range(5):
+        print(topics[i])
 
 if __name__ == "__main__":
     main()
