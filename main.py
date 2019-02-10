@@ -27,7 +27,8 @@ class Question:
 def main():
     with open('db.csv', encoding='utf8') as dbraw:
         db = [Question(i) for i in list(reader(dbraw))]
-    docket = docketGenerator(db, 1)
+    roundN = 1
+    docket = docketGenerator(db, roundN)
 
 def priceNormalise(docket, roundN):
     for n,i in enumerate(docket):
