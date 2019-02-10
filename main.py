@@ -31,7 +31,7 @@ def main():
 
 def roundGenerator(db, roundN):
     categories = sample(set([i.fetchRoundUID(roundN) for i in db if i.round == roundN]),5)
-    print([i.isSelected(categories) for i in db if i.isSelected(categories) != None])
+    docket = [i.isSelected(categories) for i in db if i.isSelected(categories) != None]
 
 if __name__ == "__main__":
     main()
