@@ -23,7 +23,6 @@ class Question:
         if (self.id,self.round,self.topic) in uIDs:
             return self
 
-
 def main():
     with open('db.csv', encoding='utf8') as dbraw:
         db = [Question(i) for i in list(reader(dbraw))]
@@ -38,6 +37,9 @@ def priceNormalise(docket, roundN):
 def docketGenerator(db, roundN):
     categories = sample(set([i.fetchRoundUID(roundN) for i in db if i.round == roundN]),5)
     return priceNormalise([i.isSelected(categories) for i in db if i.isSelected(categories) != None], roundN)
+
+def preGame():
+    pass
 
 if __name__ == "__main__":
     main()
