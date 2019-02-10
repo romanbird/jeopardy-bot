@@ -1,5 +1,5 @@
 from csv import reader
-from random 
+from random import choice
 class Question:
     def __init__(self, line):
         self.id = line[0]
@@ -20,7 +20,7 @@ def main():
         db = [Question(i) for i in list(reader(dbraw))]
 
 def roundGenerator():
-
+    pass
 
 
 if __name__ == "__main__":
