@@ -27,11 +27,16 @@ class Question:
 def main():
     with open('db.csv', encoding='utf8') as dbraw:
         db = [Question(i) for i in list(reader(dbraw))]
-    roundGenerator(db, 1)
+    docket = docketGenerator(db, 1)
 
-def roundGenerator(db, roundN):
+def priceNormalise(docket, roundN):
+    for n,i in enumerate(docket):
+        i.value = ([200,400,600,800,1000][n%5])*roundN
+    return docket
+
+def docketGenerator(db, roundN):
     categories = sample(set([i.fetchRoundUID(roundN) for i in db if i.round == roundN]),5)
-    docket = [i.isSelected(categories) for i in db if i.isSelected(categories) != None]
+    return priceNormalise([i.isSelected(categories) for i in db if i.isSelected(categories) != None], roundN)
 
 if __name__ == "__main__":
     main()
