@@ -1,4 +1,5 @@
 from csv import reader
+from random 
 class Question:
     def __init__(self, line):
         self.id = line[0]
@@ -17,6 +18,8 @@ class Question:
 def main():
     with open('sample.csv', encoding='utf8') as dbraw:
         db = [Question(i) for i in list(reader(dbraw))]
+
+def roundGenerator():
 
 
 
