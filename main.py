@@ -6,7 +6,7 @@ class Question:
         self.id = line[0]
         self.round = 1 if line[1]=="Jeopardy" else 2
         self.topic=line[2]
-        self.value=int(line[3]) if int(self.id) > 3966 else int(line[3]) * 2
+        self.value=int(line[3][1:].replace(",","")) if int(self.id) > 3966 else int(line[3][1:].replace(",","")) * 2
         self.question=line[4]
         self.answer=line[5]
     
