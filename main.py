@@ -23,11 +23,23 @@ class Question:
         if (self.id,self.round,self.topic) in uIDs:
             return self
 
+class Player:
+    def __init__(self, line):
+        self.id = line
+
+    def __repr__(self):
+        return self.id
+
 def main():
     with open('db.csv', encoding='utf8') as dbraw:
         db = [Question(i) for i in list(reader(dbraw))]
+
+    preGame()
+
     roundN = 1
     docket = docketGenerator(db, roundN)
+
+
 
 def priceNormalise(docket, roundN):
     for n,i in enumerate(docket):
@@ -39,7 +51,12 @@ def docketGenerator(db, roundN):
     return priceNormalise([i.isSelected(categories) for i in db if i.isSelected(categories) != None], roundN)
 
 def preGame():
-    pass
+    players = []
+    while True:
+        x = input("Enter player name, or 'start' to begin. ")
+        if x == "start":
+            break
+        players.append(Player(x))
 
 if __name__ == "__main__":
     main()
