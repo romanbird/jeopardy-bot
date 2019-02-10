@@ -38,7 +38,7 @@ def main():
     with open('db.csv', encoding='utf8') as dbraw:
         db = [Question(i) for i in list(reader(dbraw))]
 
-    preGame()
+    fetchPlayers()
 
     roundN = 1
     docket = docketGenerator(db, roundN)
@@ -54,13 +54,14 @@ def docketGenerator(db, roundN):
     categories = sample(set([i.fetchRoundUID(roundN) for i in db if i.round == roundN]),5)
     return priceNormalise([i.isSelected(categories) for i in db if i.isSelected(categories) != None], roundN)
 
-def preGame():
+def fetchPlayers():
     players = []
     while True:
         x = input("Enter player name, or 'start' to begin. ")
         if x == "start":
             break
         players.append(Player(x))
+    return players
 
 if __name__ == "__main__":
     main()
