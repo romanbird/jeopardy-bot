@@ -38,7 +38,7 @@ def main():
     with open('db.csv', encoding='utf8') as dbraw:
         db = [Question(i) for i in list(reader(dbraw))]
 
-    fetchPlayers()
+    players = fetchPlayers()
 
     roundN = 1
     docket = docketGenerator(db, roundN)
