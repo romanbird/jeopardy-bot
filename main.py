@@ -14,7 +14,7 @@ class Question:
         return "\nTopic: {}, {}, {}, {}".format(self.topic,self.round,self.value,self.question)
 
     def fetchRoundUID(self, roundN):
-        return self.fetchRoundUID() if self.round == roundN else None
+        return self.fetchUID() if self.round == roundN else None
     
     def fetchUID(self):
         return (self.id,self.round,self.topic)
