@@ -26,9 +26,13 @@ class Question:
 class Player:
     def __init__(self, line):
         self.id = line
+        self.money = int(0)
 
     def __repr__(self):
-        return self.id
+        return "{}: {}".format(self.id, self.formatMoney())
+    
+    def formatMoney(self):
+        return "${}".format(self.money)
 
 def main():
     with open('db.csv', encoding='utf8') as dbraw:
