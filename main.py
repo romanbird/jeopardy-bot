@@ -1,5 +1,5 @@
 from csv import reader
-from random import choice
+from random import sample
 
 class Question:
     def __init__(self, line):
@@ -13,16 +13,25 @@ class Question:
         self.question=line[4]
         self.answer=line[5]
     
-    def returnUID(self):
-        return (self.id,self.topic)
+    def __repr__(self):
+        return "\nTopic: {}, {}, {}, {}".format(self.topic,self.round,self.value,self.question)
+
+    def returnUID(self, roundN):
+        return (self.id,self.round,self.topic) if self.round == roundN else None
+    
+    def isSelected(self, uIDs):
+        if (self.id,self.round,self.topic) in uIDs:
+            return self
+
 
 def main():
     with open('sample.csv', encoding='utf8') as dbraw:
         db = [Question(i) for i in list(reader(dbraw))]
+    roundGenerator(db, 1)
 
-def roundGenerator():
-    pass
-
+def roundGenerator(db, roundN):
+    categories = sample(set([i.returnUID(roundN) for i in db if i.round == roundN]),5)
+    print([i.isSelected(categories) for i in db if i.isSelected(categories) != None])
 
 if __name__ == "__main__":
     main()
