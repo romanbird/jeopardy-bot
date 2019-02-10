@@ -11,7 +11,7 @@ class Question:
         self.answer=line[5]
     
     def __repr__(self):
-        return "\nTopic: {}, {}, {}, {}".format(self.topic,self.round,self.value,self.question)
+        return "\nTopic: {}, Round:{}, {}, {}".format(self.topic,self.round,self.value,self.question)
 
     def fetchRoundUID(self, roundN):
         return self.fetchUID() if self.round == roundN else None
