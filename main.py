@@ -25,6 +25,9 @@ class Question:
     def isSelected(self, uIDs):
         if (self.id,self.round,self.topic) in uIDs:
             return self
+    
+    def isExpired(self):
+        return "[x]" if self.expired else self.value
 
 class Player:
     def __init__(self, line):
