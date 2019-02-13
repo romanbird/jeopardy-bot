@@ -67,6 +67,9 @@ def fetchPlayers():
         players.append(Player(x))
     return players
 
+def lookupDocket(docket, x, y):
+    return docket[(y*5)+x]
+
 def game(docket, players):
     topics = [i for i in set([i.topic for i in docket])]
     print("TONIGHT'S TOPICS ARE...")
