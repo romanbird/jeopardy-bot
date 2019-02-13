@@ -10,6 +10,7 @@ class Question:
         self.value=int(line[3][1:].replace(",","")) if int(self.id) > 3966 else int(line[3][1:].replace(",","")) * 2
         self.question=line[4]
         self.answer=line[5]
+        self.dailyDouble=False
     
     def __repr__(self):
         return "\nTopic: {}, Round:{}, {}, {}".format(self.topic[:5],self.round,self.value,self.question[:5])
