@@ -11,9 +11,10 @@ class Question:
         self.question=line[4]
         self.answer=line[5]
         self.dailyDouble=False
+        self.expired=False
     
     def __repr__(self):
-        return "\nTopic: {}, Round:{}, {}, {}".format(self.topic[:5],self.round,self.value,self.question[:5])
+        return "\nTopic: {}, Round:{}, {}, {}, [{}]".format(self.topic[:5],self.round,self.value,self.question[:5],"x" if self.expired else " ")
 
     def fetchRoundUID(self, roundN):
         return self.fetchUID() if self.round == roundN else None
