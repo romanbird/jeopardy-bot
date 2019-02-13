@@ -72,6 +72,8 @@ def game(docket, players):
     print("TONIGHT'S TOPICS ARE...")
     print(", ".join(topics))
     docket = np.array(docket).reshape(5,5)
+    docket = list(np.swapaxes(docket, 0, 1).flatten()) #This seems somewhat inefficient, will optimise later
+    
 
 if __name__ == "__main__":
     main()
