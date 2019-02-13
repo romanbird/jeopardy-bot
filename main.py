@@ -1,5 +1,6 @@
 from csv import reader
 from random import sample
+import numpy as np
 
 class Question:
     def __init__(self, line):
@@ -69,8 +70,8 @@ def fetchPlayers():
 def game(docket, players):
     topics = [i for i in set([i.topic for i in docket])]
     print("TONIGHT'S TOPICS ARE...")
-    for i in range(5):
-        print(topics[i])
+    print(", ".join(topics))
+    docket = np.array(docket).reshape(5,5)
 
 if __name__ == "__main__":
     main()
