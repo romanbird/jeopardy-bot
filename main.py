@@ -94,8 +94,8 @@ def game(docket, players):
     docket = list(np.swapaxes(docket, 0, 1).flatten()) #This seems somewhat inefficient, will optimise later
     printBoard(docket)
     print()
-    x = input("Choose board (i.e, 1,1) ").split(",")
-    print(lookupDocket(docket, x[0], x[1]))
+    x = input("Choose board (i.e. 1,1) ").split(",")
+    print(lookupDocket(docket, x[0], x[1]).presentQuestion())
 
 
 
