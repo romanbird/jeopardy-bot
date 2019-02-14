@@ -29,6 +29,12 @@ class Question:
     def isExpired(self):
         return "[x]" if self.expired else self.value
 
+    def presentQuestion(self):
+        return "{} {}: {}".format(self.topic, self.formatMoney(), self.question)
+    
+    def formatMoney(self):
+        return "${}".format(self.value)
+
 class Player:
     def __init__(self, line):
         self.id = line
@@ -73,7 +79,12 @@ def fetchPlayers():
     return players
 
 def lookupDocket(docket, x, y):
-    return docket[(y*5)+x]
+    return docket[(int(y)*5)+int(x)]
+
+def printBoard(docket):
+    for i in range(5):
+        print(docket[i].isExpired(), docket[i+5].isExpired(), docket[i+10].isExpired(), docket[i+15].isExpired(), docket[i+20].isExpired())
+    
 
 def game(docket, players):
     topics = [i for i in set([i.topic for i in docket])]
@@ -81,7 +92,12 @@ def game(docket, players):
     print(", ".join(topics))
     docket = np.array(docket).reshape(5,5)
     docket = list(np.swapaxes(docket, 0, 1).flatten()) #This seems somewhat inefficient, will optimise later
-    
+    printBoard(docket)
+    print()
+    x = input("Choose board (i.e, 1,1) ").split(",")
+    print(lookupDocket(docket, x[0], x[1]))
+
+
 
 if __name__ == "__main__":
     main()
