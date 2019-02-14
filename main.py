@@ -87,16 +87,15 @@ def printBoard(docket):
     
 
 def game(docket, players):
-    topics = [i for i in set([i.topic for i in docket])]
-    print("TONIGHT'S TOPICS ARE...")
-    print(", ".join(topics))
     docket = np.array(docket).reshape(5,5)
     docket = list(np.swapaxes(docket, 0, 1).flatten()) #This seems somewhat inefficient, will optimise later
+    topics = [i.topic for i in docket[0:5]]
+    print("TONIGHT'S TOPICS ARE...")
+    print(", ".join(topics))
     printBoard(docket)
     print()
     x = input("Choose board (i.e. 1,1) ").split(",")
-    print(lookupDocket(docket, x[0], x[1]).presentQuestion())
-
+    print(lookupDocket(docket, int(x[0])-1, int(x[1])-1).presentQuestion())
 
 
 if __name__ == "__main__":
