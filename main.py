@@ -94,7 +94,7 @@ def game(docket, players):
     print(", ".join(topics))
     printBoard(docket)
     print()
-    x = input("Choose board (i.e. 1,1) ").split(",")
+    x = input("Choose board (i.e. 1,600) ").replace(" ","").split(",")
     print(lookupDocket(docket, int(x[0])-1, int(x[1])-1).presentQuestion())
 
 
