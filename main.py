@@ -87,6 +87,7 @@ def printBoard(docket):
     
 
 def game(docket, players):
+    roundN = 1
     docket = np.array(docket).reshape(5,5)
     docket = list(np.swapaxes(docket, 0, 1).flatten()) #This seems somewhat inefficient, will optimise later
     topics = [i.topic for i in docket[0:5]]
@@ -95,7 +96,7 @@ def game(docket, players):
     printBoard(docket)
     print()
     x = input("Choose board (i.e. 1,600) ").replace(" ","").split(",")
-    print(lookupDocket(docket, int(x[0])-1, int(x[1])-1).presentQuestion())
+    print(lookupDocket(docket, int(x[0])-1, int(x[1])/(200*roundN)-1).presentQuestion())
 
 
 if __name__ == "__main__":
