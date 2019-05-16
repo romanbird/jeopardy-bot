@@ -48,7 +48,7 @@ def main():
     with open('db.csv', encoding='utf8') as dbraw:
         db = [Question(i) for i in list(reader(dbraw))]
 
-    #players = fetchPlayers()
+    #players = genPlayers()
     players = [Player("Roman"), Player("George")]
 
     roundN = 1
@@ -67,7 +67,7 @@ def docketGenerator(db, roundN):
     categories = sample(set([i.fetchRoundUID(roundN) for i in db if i.round == roundN]),5)
     return priceNormalise([i.isSelected(categories) for i in db if i.isSelected(categories) != None], roundN)
 
-def fetchPlayers():
+def genPlayers():
     players = []
     while True:
         x = input("Enter player name, or 'start' to begin. ")
