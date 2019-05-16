@@ -17,10 +17,8 @@ class Question:
         return "\nTopic: {}, Round:{}, {}, {}, [{}]".format(self.topic[:5],self.round,self.value,self.question[:5],"x" if self.expired else " ")
 
     def fetchRoundUID(self, roundN):
-        return self.fetchUID() if self.round == roundN else None
+        return (self.id,self.round,self.topic) if self.round == roundN else None
     
-    def fetchUID(self):
-        return (self.id,self.round,self.topic)
 
     def isSelected(self, uIDs):
         if (self.id,self.round,self.topic) in uIDs:
