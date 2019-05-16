@@ -3,7 +3,7 @@ from random import sample
 import numpy as np
 
 class Question:
-    def __init__(self, line):
+    def __init__(self, line): #parses through database
         self.id = line[0]
         self.round = 1 if line[1]=="Jeopardy!" else 2
         self.topic=line[2]
@@ -13,13 +13,12 @@ class Question:
         self.dailyDouble=False
         self.expired=False
     
-    def __repr__(self):
+    def __repr__(self): #visualisation for debugging purposes
         return "\nTopic: {}, Round:{}, {}, {}, [{}]".format(self.topic[:5],self.round,self.value,self.question[:5],"x" if self.expired else " ")
 
-    def fetchRoundUID(self, roundN):
+    def fetchRoundUID(self, roundN): #wtf is this meant to do??? fix later
         return (self.id,self.round,self.topic) if self.round == roundN else None
     
-
     def isSelected(self, uIDs):
         if (self.id,self.round,self.topic) in uIDs:
             return self
@@ -58,16 +57,16 @@ def main():
 
 
 
-def priceNormalise(docket, roundN):
+def priceNormalise(docket, roundN): #overwrites price (accounts for confusion in the database)
     for n,i in enumerate(docket):
         i.value = ([200,400,600,800,1000][n%5])*roundN
     return docket
 
-def docketGenerator(db, roundN):
+def docketGenerator(db, roundN): #generates the 25 question table for a single round
     categories = sample(set([i.fetchRoundUID(roundN) for i in db if i.round == roundN]),5)
     return priceNormalise([i.isSelected(categories) for i in db if i.isSelected(categories) != None], roundN)
 
-def genPlayers():
+def genPlayers(): #inputs players
     players = []
     while True:
         x = input("Enter player name, or 'start' to begin. ")
