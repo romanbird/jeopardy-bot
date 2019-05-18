@@ -24,7 +24,7 @@ class Question:
             return self
     
     def checkExpiration(self):
-        return "[x]" if self.expired else self.value
+        return "[x]" if self.expired else str(self.value).ljust(4)
 
     def presentQuestion(self):
         return "{} {}: {}".format(self.topic, self.formatMoney(), self.question)
