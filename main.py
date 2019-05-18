@@ -80,7 +80,7 @@ def lookupDocket(docket, x, y):
 
 def printBoard(docket):
     for i in range(5):
-        print(docket[i].checkExpiration(), docket[i+5].checkExpiration(), docket[i+10].checkExpiration(), docket[i+15].checkExpiration(), docket[i+20].checkExpiration())
+        print(docket[(i*5)+0].checkExpiration(), docket[(i*5)+1].checkExpiration(), docket[(i*5)+2].checkExpiration(), docket[(i*5)+3].checkExpiration(), docket[(i*5)+4].checkExpiration())
     
 
 def game(docket, players):
