@@ -19,11 +19,11 @@ class Question:
     def fetchRoundUID(self, roundN): #wtf is this meant to do??? fix later
         return (self.id,self.round,self.topic) if self.round == roundN else None
     
-    def isSelected(self, uIDs):
+    def returnSelected(self, uIDs):
         if (self.id,self.round,self.topic) in uIDs:
             return self
     
-    def isExpired(self):
+    def checkExpiration(self):
         return "[x]" if self.expired else self.value
 
     def presentQuestion(self):
@@ -64,7 +64,7 @@ def priceNormalise(docket, roundN): #overwrites price (accounts for confusion in
 
 def docketGenerator(db, roundN): #generates the 25 question table for a single round
     categories = sample(set([i.fetchRoundUID(roundN) for i in db if i.round == roundN]),5)
-    return priceNormalise([i.isSelected(categories) for i in db if i.isSelected(categories) != None], roundN)
+    return priceNormalise([i.returnSelected(categories) for i in db if i.returnSelected(categories) != None], roundN)
 
 def genPlayers(): #inputs players
     players = []
@@ -80,7 +80,7 @@ def lookupDocket(docket, x, y):
 
 def printBoard(docket):
     for i in range(5):
-        print(docket[i].isExpired(), docket[i+5].isExpired(), docket[i+10].isExpired(), docket[i+15].isExpired(), docket[i+20].isExpired())
+        print(docket[i].checkExpiration(), docket[i+5].checkExpiration(), docket[i+10].checkExpiration(), docket[i+15].checkExpiration(), docket[i+20].checkExpiration())
     
 
 def game(docket, players):
