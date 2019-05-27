@@ -92,8 +92,8 @@ def game(docket, players):
     print(", ".join(topics))
     printBoard(docket)
     print()
-    x = input("Choose board (i.e. 1,600) ").replace(" ","").split(",")
-    print(lookupDocket(docket, int(x[0])-1, int(x[1])/(200*roundN)-1).presentQuestion())
+    selection = input("Choose board (i.e. 1,600) ").replace(" ","").split(",")
+    print(lookupDocket(docket, int(selection[0])-1, int(selection[1])/(200*roundN)-1).presentQuestion())
 
 
 if __name__ == "__main__":
