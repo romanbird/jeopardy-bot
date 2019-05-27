@@ -99,6 +99,10 @@ def game(docket, players):
         print()
         selection = input("Choose board (i.e. 1,600) ").replace(" ","").split(",")
         questionSelected = lookupDocket(docket, int(selection[0])-1, int(selection[1])/(200*roundN)-1)
+        if questionSelected.isExpired():
+            print("Hey, that's already been chosen")
+            continue
+        questionSelected.expired = True
         print(questionSelected.presentQuestion())
         print("")
         answerResponse = "Template string"
