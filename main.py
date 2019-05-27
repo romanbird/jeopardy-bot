@@ -1,6 +1,7 @@
 from csv import reader
 from random import sample
 import numpy as np
+from time import time
 
 class Question:
     def __init__(self, line): #parses through database
@@ -84,16 +85,26 @@ def printBoard(docket):
     
 
 def game(docket, players):
+    startingTime = 0
+    ROUNDDURATION = 20 #Default: 390
     roundN = 1
     docket = np.array(docket).reshape(5,5)
     docket = list(np.swapaxes(docket, 0, 1).flatten()) #This seems somewhat inefficient, will optimise later
     topics = [i.topic for i in docket[0:5]]
     print("TONIGHT'S TOPICS ARE...")
     print(", ".join(topics))
-    printBoard(docket)
-    print()
-    selection = input("Choose board (i.e. 1,600) ").replace(" ","").split(",")
-    print(lookupDocket(docket, int(selection[0])-1, int(selection[1])/(200*roundN)-1).presentQuestion())
+    roundStart = time()
+    while (time()-roundStart < ROUNDDURATION):
+        printBoard(docket)
+        print()
+        selection = input("Choose board (i.e. 1,600) ").replace(" ","").split(",")
+        questionSelected = lookupDocket(docket, int(selection[0])-1, int(selection[1])/(200*roundN)-1)
+        print(questionSelected.presentQuestion())
+        print("")
+        answerResponse = "Template string"
+    print("Round Complete!")
+        
+
 
 
 if __name__ == "__main__":
