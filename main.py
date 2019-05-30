@@ -92,14 +92,14 @@ def game(docket, players):
     docket = list(np.swapaxes(docket, 0, 1).flatten()) #This seems somewhat inefficient, will optimise later
     topics = [i.topic for i in docket[0:5]]
     print("TONIGHT'S TOPICS ARE...")
-    print(", ".join(topics))
     roundStart = time()
     while (time()-roundStart < ROUNDDURATION):
+        print(", ".join(topics))
         printBoard(docket)
         print()
         selection = input("Choose board (i.e. 1,600) ").replace(" ","").split(",")
         questionSelected = lookupDocket(docket, int(selection[0])-1, int(selection[1])/(200*roundN)-1)
-        if questionSelected.isExpired():
+        if questionSelected.expired:
             print("Hey, that's already been chosen")
             continue
         questionSelected.expired = True
